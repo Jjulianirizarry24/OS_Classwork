@@ -2,35 +2,32 @@
 
 #include <math.h>
 #include <stdio.h>
+#define PI 3.141592654
 
-/*
-
-Write a function with the following prototype:
-int cosine_series(int init_number, int end_number);
-
-The function must compute the cosine of all integer numbers between init_number
-and end_number (both included). It must return 1 if the sum is positive or zero.
-In case the sum is negative, it must return -1. Write a main program that asks
-the user for the lower and upper limits of the series (i.e., 4 and 23) and then
-use the function to calculate if the cosine_series calculation is positive or
-negative.
-
-Upload a compressed file with the project's folder, including the "src" and
-"include" directories and the cmakelists.txt file. The program will not be
-evaluated if it does not compile correctly with the cmakelists.txt file.
-
-*/
-
+/**
+ * @brief Calculates the sum of cosines for a series of angles.
+ *
+ * This function computes the cosine of each integer value from `init_number` to
+ * `end_number` (inclusive), and adds the results to a running sum. It prints
+ * each cosine value as it processes the numbers. Finally, it returns 1 if the
+ * sum is non-negative, or -1 if the sum is negative.
+ *
+ * @param init_number The starting number of the series.
+ * @param end_number The ending number of the series.
+ *
+ * @return 1 if sum is positive, otherwise -1.
+ *
+ */
 int cosine_series(int init_number, int end_number) {
-  double curr = 0;
+  double curr_sum = 0;
 
   for (int i = init_number; i <= end_number; i++) {
-    curr += cos(init_number);
+    double temp = cos((i * PI) / 180);
 
-    if (curr < 0) {
-      return -1;
-    }
+    curr_sum += temp;
+
+    printf("\n cos of number %d: %f \n", i, temp);
   }
 
-  return 1;
+  return (curr_sum >= 0) ? 1 : -1;
 }

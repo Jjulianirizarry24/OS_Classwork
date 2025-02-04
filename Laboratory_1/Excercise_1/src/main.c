@@ -13,6 +13,7 @@ int main() {
   scanf("%d", &end_number);
 
   int result = cosine_series(init_number, end_number);
+  printf("\n Answer is: ");
   if (result == 1) {
     printf("Positive\n");
   } else {

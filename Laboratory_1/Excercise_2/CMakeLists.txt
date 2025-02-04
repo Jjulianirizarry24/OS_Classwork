@@ -8,6 +8,6 @@ include_directories(include)
 
 add_executable(excercise2
     src/main.c
-    src/excercise2.c)
+    src/functions.c)
 
-target_link_libraries(excercise2 m)
+# target_link_libraries(excercise2 m)

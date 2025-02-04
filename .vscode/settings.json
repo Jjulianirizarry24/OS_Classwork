@@ -2,6 +2,10 @@
     "editor.formatOnSave": true,
     "files.associations": {
         "excercise1.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "functions.h": "c",
+        "stdio.h": "c",
+        "ctype.h": "c",
+        "string.h": "c"
     }
 }

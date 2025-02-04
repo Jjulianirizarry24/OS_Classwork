@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/excercise4.dir/link.d CMakeFiles/excercise4.dir/src/main.c.o CMakeFiles/excercise4.dir/src/functions.c.o -o excercise4

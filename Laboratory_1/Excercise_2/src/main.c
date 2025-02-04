@@ -1,23 +1,34 @@
 #include <stdio.h>
 
-#include "excercise1.h"
+#include "functions.h"
 
 int main() {
-  int init_number, end_number;
+  char *months[] = {"January",   "February", "March",    "April",
+                    "May",       "June",     "July",     "August",
+                    "September", "October",  "November", "December"};
 
-  // Ask the user for the lower and upper limits
-  printf("Enter initial number value: ");
-  scanf("%d", &init_number);
+  printf("\nStart of Program \n");
 
-  printf("Enter last number value: ");
-  scanf("%d", &end_number);
+  for (int i = 0; i < 3; i++) {
+    int inputSeconds = 0;
+    printf("Hello! Please enter amount of seconds: ");
+    scanf("%d", &inputSeconds);
 
-  int result = cosine_series(init_number, end_number);
-  if (result == 1) {
-    printf("Positive\n");
-  } else {
-    printf("Negative\n");
+    printf("\n");
+
+    int day = 1;
+    int month = 0;
+    int year = 1970;
+
+    int *d = &day;
+    int *m = &month;
+    int *y = &year;
+
+    fill_date(inputSeconds, d, m, y);
+
+    // Print the result in the required format
+    printf("\nYour Date is => | %s %d, %d | \n", months[*m], *d, *y);
   }
-
+  printf("\nEnd of Program \n");
   return 0;
 }

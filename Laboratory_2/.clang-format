@@ -1,0 +1,8 @@
+# Google C/C++ Code Style Settings
+
+Language: Cpp
+BasedOnStyle: Google
+ColumnLimit: 80
+
+
+

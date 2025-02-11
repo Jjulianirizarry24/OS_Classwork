@@ -1,3 +1,0 @@
-/home/jj/Documents/Classwork/OS_Classwork/Laboratory_1/Excercise_4/build/CMakeFiles/excercise4.dir
-/home/jj/Documents/Classwork/OS_Classwork/Laboratory_1/Excercise_4/build/CMakeFiles/edit_cache.dir
-/home/jj/Documents/Classwork/OS_Classwork/Laboratory_1/Excercise_4/build/CMakeFiles/rebuild_cache.dir

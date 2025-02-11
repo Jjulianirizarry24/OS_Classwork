@@ -1,0 +1,3 @@
+Evolution of Aerodynamics in F1
+
+Formula One teams have continuously pushed the limits of technology to improve speed and efficiency. In recent seasons, new regulations have reshaped aerodynamics, with ground effect floors making a comeback in 2022 to improve overtaking. The development of front and rear wings with active elements, such as the Drag Reduction System (DRS), has also changed racing dynamics. These innovations come with risk, as maintaining stability while reducing drag is a complex engineering challenge. Modern F1 cars are a testament to the balance between speed and downforce, using computational fluid dynamics (CFD) and wind tunnel testing to refine designs.

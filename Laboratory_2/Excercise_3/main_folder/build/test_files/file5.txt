@@ -1,0 +1,3 @@
+The Role of AI and Data Analysis in F1
+
+Formula One teams rely on artificial intelligence and big data to analyze every aspect of performance. Machine learning models process telemetry data from sensors embedded in the cars, allowing engineers to fine-tune setups. The ability to predict tire degradation, fuel consumption, and optimal racing lines has become an essential part of strategy. While this technology improve efficiency, they also introduce an element of risk—an over-reliance on data could lead to miscalculations. The balance between human instinct and machine precision continues to define the pursuit of speed in modern F1.

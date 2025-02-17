@@ -9,6 +9,7 @@
         "string.h": "c",
         "unistd.h": "c",
         "fcntl.h": "c",
-        "wait.h": "c"
+        "wait.h": "c",
+        "features.h": "c"
     }
 }

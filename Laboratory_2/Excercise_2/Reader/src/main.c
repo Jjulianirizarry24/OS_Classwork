@@ -79,10 +79,7 @@ void handle_signal_2(int sig) {
 
 /**
  * @brief Main function.
- *
- * This is the entry point of the program. It opens the shared memory object
- * and maps it into the process's address space, initializing all elements to
- * zero. Signal handlers for SIGUSR1, SIGUSR2, and SIGALRM are registered. The
+ *R1, SIGUSR2, and SIGALRM are registered. The
  * program then enters an infinite loop, waiting for signals.
  *
  */

@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/processA.dir/link.d CMakeFiles/processA.dir/src/main.c.o -o processA

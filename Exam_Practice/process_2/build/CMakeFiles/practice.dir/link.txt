@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/practice.dir/link.d CMakeFiles/practice.dir/src/main.c.o -o practice

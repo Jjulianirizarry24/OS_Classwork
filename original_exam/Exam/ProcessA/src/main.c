@@ -8,19 +8,6 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
-char* shm;
-char* queue;
-int bool = 1;
-
-handle_exit(int sig) {
-  // bool = 0;
-  printf("\n exit program A\n");
-  shm_unlink(shm);
-  mq_unlink(queue);
-  kill(getpid(), SIGINT);
-  exit(0);
-}
-
 // Process A
 int main(int argc, char* argv[]) {
   if (argc != 3) {
@@ -35,12 +22,8 @@ int main(int argc, char* argv[]) {
   char* SHM_NAME;
   float BLOCK_SIZE;
 
-  SHM_NAME = argv[1];
-  QUEUE_NAME = argv[2];
-
-  shm = SHM_NAME;
-  queue = QUEUE_NAME;
-
+  QUEUE_NAME = argv[1];
+  SHM_NAME = argv[2];
   BLOCK_SIZE = sizeof(float) * 25;
 
   mqd_t queue;
@@ -57,26 +40,24 @@ int main(int argc, char* argv[]) {
   mq_unlink(QUEUE_NAME);
 
   queue = mq_open(QUEUE_NAME, O_CREAT | O_WRONLY, 0644, &attr);
-  if (queue == (mqd_t)-1) {
-    perror("mq_open failed in Process A");
-    exit(1);
-  }
 
   // Initialize shared memory block
   int fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0666);
   ftruncate(fd, BLOCK_SIZE);
   float* shm_ptr =
       mmap(NULL, BLOCK_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+
   pid_t pid;
   //----------------- Call Process B and C-----------------
   for (int i = 0; i < 2; i++) {
-    // Process B
-    pid = fork();
-    if (pid == 0 && i == 0) {
-      execlp("../../ProcessB/build/processB", "processB", SHM_NAME, QUEUE_NAME,
-             (char*)NULL);
-      exit(0);
-    }
+    // // Process B
+    // pid = fork();
+    // if (pid == 0 && i == 0) {
+    //   execlp("../../ProcessB/build/processB", "processB", SHM_NAME,
+    //   QUEUE_NAME,
+    //          (char*)NULL);
+    //   exit(0);
+    // }
     // Process C
     if (pid == 0 && i == 1) {
       execlp("../../ProcessC/build/processC", "processC", SHM_NAME,
@@ -88,11 +69,10 @@ int main(int argc, char* argv[]) {
     }
   }
 
-  struct sigaction sa;
-  sa.sa_handler = handle_exit;
-  sigaction(SIGINT, &sa, NULL);
+  int loop_val = 1;
+  char buffer[1024];
 
-  while (bool) {
+  while (loop_val) {
     sleep(1);
     printf("  --------- \n");
     printf(" | M e n u |\n");
@@ -108,35 +88,45 @@ int main(int argc, char* argv[]) {
     scanf("%d", &input);
 
     printf("\n\n --------------------------- \n\n");
+    switch (input) {
+      case 0:
+        loop_val = 0;
+        break;
+      // Square
+      case 1:
 
-    if (input == 0) {
-      break;
-    }
+        snprintf(buffer, 1024, "square");
+        printf("\n %s \n", buffer);
 
-    // Square
-    if (input == 1) {
-      mq_send(queue, "square", sizeof(char) * 30, 0);
-    }
+        mq_send(queue, buffer, 1024, 0);
 
-    // Divide
-    else if (input == 2) {
-      mq_send(queue, "half", sizeof(char) * 30, 0);
-    }
+        execlp("../../ProcessB/build/processB", "processB", SHM_NAME,
+               QUEUE_NAME, (char*)NULL);
 
-    // Plot
-    else if (input == 3) {
-      kill(pid, SIGUSR1);
-    }
+        break;
+      // Divide
+      case 2:
+        snprintf(buffer, 1024, "half");
+        printf("\n%s\n", buffer);
 
-    else {
-      printf("\n Invalid option. Try Again. \n");
+        break;
+
+      // Plot
+      case 3:
+        kill(pid, SIGUSR1);
+
+        break;
+
+      default:
+        printf("Invalid option!\n");
     }
   }
 
-  // printf("\n End Process A \n");
-  // munmap(shm_ptr, BLOCK_SIZE);
-  // shm_unlink(SHM_NAME);
-  // mq_unlink(QUEUE_NAME);
+  printf("\n End Process A \n");
+  munmap(shm_ptr, BLOCK_SIZE);
+  close(fd);
+  shm_unlink(SHM_NAME);
+  mq_unlink(QUEUE_NAME);
 
   return 0;
 }

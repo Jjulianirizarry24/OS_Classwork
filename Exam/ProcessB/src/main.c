@@ -52,11 +52,7 @@ int main(int argc, char* argv[]) {
 
   struct sigaction sa;
   sa.sa_handler = handle_exit;
-
-  struct sigaction sa2;
-  sa2.sa_handler = handle_exit;
-  sigaction(SIGINT, &sa2, NULL);
-
+  
   while (1) {
     sigaction(SIGINT, &sa, NULL);
     queue = mq_open(QUEUE_NAME, O_RDONLY);

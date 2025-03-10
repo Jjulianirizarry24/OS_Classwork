@@ -1,0 +1,3 @@
+/home/fslabs/os_100_12/Documents/OS_LABS/Exam/ProcessA/build/CMakeFiles/processA.dir
+/home/fslabs/os_100_12/Documents/OS_LABS/Exam/ProcessA/build/CMakeFiles/edit_cache.dir
+/home/fslabs/os_100_12/Documents/OS_LABS/Exam/ProcessA/build/CMakeFiles/rebuild_cache.dir

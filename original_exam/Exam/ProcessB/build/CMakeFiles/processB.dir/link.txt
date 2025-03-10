@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/processB.dir/src/main.c.o -o processB 

@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/bouncing_ball2.dir/link.d CMakeFiles/bouncing_ball2.dir/src/main.c.o CMakeFiles/bouncing_ball2.dir/src/functions.c.o -o bouncing_ball2  -lncurses

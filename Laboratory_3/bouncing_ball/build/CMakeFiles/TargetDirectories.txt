@@ -1,3 +1,0 @@
-/home/jj/Documents/Classwork/OS_Classwork/Laboratory_3/bouncing_ball/build/CMakeFiles/bouncing_ball.dir
-/home/jj/Documents/Classwork/OS_Classwork/Laboratory_3/bouncing_ball/build/CMakeFiles/edit_cache.dir
-/home/jj/Documents/Classwork/OS_Classwork/Laboratory_3/bouncing_ball/build/CMakeFiles/rebuild_cache.dir

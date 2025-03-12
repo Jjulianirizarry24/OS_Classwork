@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/juan/Documents/OS/2025S/labs/lab3/bouncing_ball/build",
+  "command": "/usr/bin/cc  -I/home/juan/Documents/OS/2025S/labs/lab3/bouncing_ball/include -g -o CMakeFiles/bouncing_ball.dir/src/main.c.o -c /home/juan/Documents/OS/2025S/labs/lab3/bouncing_ball/src/main.c",
+  "file": "/home/juan/Documents/OS/2025S/labs/lab3/bouncing_ball/src/main.c",
+  "output": "CMakeFiles/bouncing_ball.dir/src/main.c.o"
+}
+]

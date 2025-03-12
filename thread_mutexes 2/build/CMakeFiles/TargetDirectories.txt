@@ -1,3 +1,0 @@
-/home/juan/Documents/OS/2025S/class_examples/made_in_class/2025S/threads/thread_mutexes/build/CMakeFiles/threads_mutexes.dir
-/home/juan/Documents/OS/2025S/class_examples/made_in_class/2025S/threads/thread_mutexes/build/CMakeFiles/edit_cache.dir
-/home/juan/Documents/OS/2025S/class_examples/made_in_class/2025S/threads/thread_mutexes/build/CMakeFiles/rebuild_cache.dir

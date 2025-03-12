@@ -11,4 +11,4 @@ add_executable(${CMAKE_PROJECT_NAME}
 	src/main.c)
 
 	target_link_libraries(${CMAKE_PROJECT_NAME} 
-	m)
+	ncurses)

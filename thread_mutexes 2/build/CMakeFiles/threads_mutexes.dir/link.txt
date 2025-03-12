@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/threads_mutexes.dir/src/main.c.o -o threads_mutexes  -lm 

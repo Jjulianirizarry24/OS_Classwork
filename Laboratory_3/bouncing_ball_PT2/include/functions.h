@@ -1,8 +1,10 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-void *visualizeBall(void *param);
-void* changeSpeed(void *param);
+void *Plotting(void *param);
+void *movementController(void *param);
+void *collisionChecker(void *param);
+void *updateBall(void *param);
 void mainProcess();
 
 #endif

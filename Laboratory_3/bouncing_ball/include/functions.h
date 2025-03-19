@@ -1,8 +1,12 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-void *visualizeBall(void *param);
-void* changeSpeed(void *param);
+void *Plotting(void *param);
+void *readKeyboard(void *param);
 void mainProcess();
+typedef struct {
+  int x;
+  int y;
+} BallPosition;
 
 #endif

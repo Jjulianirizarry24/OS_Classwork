@@ -6,4 +6,4 @@
 #include <time.h>
 #include <unistd.h>
 
-int main() { mainProcess(); }
+int main(int argc, char *argv[]) { mainProcess(argv[1]); }

@@ -12,7 +12,7 @@ pthread_mutex_t screen_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 // Signal handler for SIGALRM
 void sigalrm_handler(int signum) {
-  // printf("Timer expired! The program will continue...\n");
+  mvprintw(0, 0, "Timer expired! The program will continue...\n");
 }
 
 /**
@@ -43,10 +43,24 @@ void mainProcess() {
  */
 void *posixTimer() {
 
+  // Set Up Signal
   struct sigaction sa;
   sa.sa_handler = sigalrm_handler; // Define the handler function
   sigaction(SIGALRM, &sa, NULL);   // Register the signal handler for SIGALRM
+
   timer_t tmr;
+  struct itimerspec its;
+  struct sigevent sev;
+
+  sev.sigev_notify - SIGEV_SIGNAL;
+  sev.sigev_signo = SIGALRM;
+  sev.sigev_value.sival_ptr = &tmr;
+
+  its.it_value.tv_sec = 0;
+  its.it_value.tv_nsec = 50000000;
+  its.it_interval.tv_sec = 0;
+  its.it_interval.tv_nsec = 0;
+
   // error checking omitted for brevity
   // pause();
 
@@ -64,13 +78,19 @@ void *posixTimer() {
     mvprintw(y, x, "*");
     refresh();
     pthread_mutex_unlock(&screen_mutex); // Unlock screen after update
-    timer_create(CLOCK_REALTIME,
-                 &(struct sigevent){.sigev_notify = SIGEV_SIGNAL,
-                                    .sigev_signo = SIGALRM},
-                 &tmr);
-    timer_settime(tmr, 0,
-                  &(struct itimerspec){.it_value = {.tv_nsec = 50000000}}, 0);
-    pause();
+    if (timer_create(CLOCK_REALTIME,
+                     &(struct sigevent){.sigev_notify = SIGEV_SIGNAL,
+                                        .sigev_signo = SIGALRM},
+                     &tmr) == -1) {
+      perror("Error calling timer_create");
+      exit(1);
+    }
+
+    if (timer_settime(tmr, 0, &its, NULL) == -1) {
+      perror("Error calling timer_settime");
+      exit(1);
+    }
+
   }
 
   fclose(file); // Close the file when done

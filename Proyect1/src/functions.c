@@ -34,8 +34,8 @@ void mainProcess(char *path) {
 
   pthread_create(&thread_1, NULL, posixTimer, (void *)path);
   pthread_join(thread_1, NULL);
-  pthread_create(&thread_2, NULL, sleepFunction, (void *)path);
-  pthread_join(thread_2, NULL);
+  // pthread_create(&thread_2, NULL, sleepFunction, (void *)path);
+  // pthread_join(thread_2, NULL);
 
   endwin();
 }
@@ -43,7 +43,6 @@ void mainProcess(char *path) {
 /**
  * @brief Executes the sleep function thread logic
  *
- * Represented with '*'
  */
 void *sleepFunction(void *ptr) {
   char *path = (char *)ptr;
@@ -60,7 +59,13 @@ void *sleepFunction(void *ptr) {
     exit(1); // Exit if the file can't be opened
   }
 
+  struct timespec start, end;
   int x, y; // Variables to store the coordinates
+
+  // Calculate the time difference
+  double start_time_in_seconds;
+  double end_time_in_seconds;
+  double time_taken;
   while (fscanf(file, "%d,%d\n", &x, &y) == 2) {
 
     pthread_mutex_lock(&screen_mutex); // Lock screen before updating
@@ -69,21 +74,24 @@ void *sleepFunction(void *ptr) {
     refresh();
     pthread_mutex_unlock(&screen_mutex); // Unlock screen after update
 
-    usleep(1);
-
-    fprintf(output_file, "Sleep Function: \n");
+    clock_gettime(CLOCK_MONOTONIC, &start);
+    usleep(50000);
+    clock_gettime(CLOCK_MONOTONIC, &end);
+    // Calculate the time difference
+    start_time_in_seconds = start.tv_sec + (start.tv_nsec / 1e9);
+    end_time_in_seconds = end.tv_sec + (end.tv_nsec / 1e9);
+    time_taken = end_time_in_seconds - start_time_in_seconds;
+    fprintf(output_file, "Sleep Function: %lf\n", time_taken);
   }
 
   // Close the file
   fclose(output_file);
   fclose(file); // Close the file when done
-  return NULL;
 }
 
 /**
  * @brief Executes the posix timer thread logic
  *
- * Represented with '#'
  */
 void *posixTimer(void *ptr) {
 
@@ -105,9 +113,9 @@ void *posixTimer(void *ptr) {
   sev.sigev_signo = signum;
   sev.sigev_value.sival_ptr = &tmr;
 
-  // Timer will expire after 1 second (single shot)
+  // Timer will expire after 50 ms
   its.it_value.tv_sec = 0;
-  its.it_value.tv_nsec = 5000;
+  its.it_value.tv_nsec = 50000000;
   its.it_interval.tv_sec = 0; // Single shot timer
   its.it_interval.tv_nsec = 0;
 
@@ -127,8 +135,16 @@ void *posixTimer(void *ptr) {
     exit(1); // Exit if the file can't be opened
   }
 
+  struct timespec start, end;
+
   int x, y;
+  double start_time_in_seconds;
+  double end_time_in_seconds;
+  double time_taken;
+
   while (fscanf(file, "%d,%d\n", &x, &y) == 2) {
+
+    clock_gettime(CLOCK_MONOTONIC, &start);
     // Start the timer
     if (timer_settime(tmr, 0, &its, NULL) == -1) {
       perror("timer_settime");
@@ -140,18 +156,23 @@ void *posixTimer(void *ptr) {
     while (!timer_expired) {
       pthread_cond_wait(&timer_cond, &screen_mutex);
     }
+
+    clock_gettime(CLOCK_MONOTONIC, &end);
+    // Calculate the time difference
+    start_time_in_seconds = start.tv_sec + (start.tv_nsec / 1e9);
+    end_time_in_seconds = end.tv_sec + (end.tv_nsec / 1e9);
+    time_taken = end_time_in_seconds - start_time_in_seconds;
     timer_expired = 0;
 
     // Update display
     clear();
-    mvprintw(y, x, "#");
+    mvprintw(y, x, "*");
     refresh();
     pthread_mutex_unlock(&screen_mutex);
 
-    fprintf(output_file, "Posix Timer: \n");
+    fprintf(output_file, "Posix Timer: %lf\n", time_taken);
   }
 
   fclose(output_file);
   fclose(file);
-  return NULL;
 }

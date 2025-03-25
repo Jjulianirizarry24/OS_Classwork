@@ -12,14 +12,29 @@ pthread_mutex_t screen_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t timer_cond = PTHREAD_COND_INITIALIZER;
 int timer_expired = 0;
 
-// Signal handler for SIGALRM
+/**
+ * @brief Signal handler for SIGALRM signal.
+ *
+ * This function is called when the SIGALRM signal is received.
+ * It sets the global flag `timer_expired` to 1 and signals the timer condition
+ * variable.
+ *
+ * @param signum The signal number that was received (not used in this
+ * function).
+ */
 void sigalrm_handler(int signum) {
   timer_expired = 1;
   pthread_cond_signal(&timer_cond);
 }
 
 /**
- * @brief Executes all program logic
+ * @brief Main process function that executes all program logic.
+ *
+ * This function initializes the ncurses library for terminal UI,
+ * creates two threads for executing `posixTimer` and `sleepFunction`,
+ * waits for both threads to complete, and then ends the ncurses session.
+ *
+ * @param path The file path to be passed to both threads for reading.
  */
 void mainProcess(char *path) {
 
@@ -34,15 +49,22 @@ void mainProcess(char *path) {
 
   pthread_create(&thread_1, NULL, posixTimer, (void *)path);
   pthread_join(thread_1, NULL);
-  // pthread_create(&thread_2, NULL, sleepFunction, (void *)path);
-  // pthread_join(thread_2, NULL);
+  pthread_create(&thread_2, NULL, sleepFunction, (void *)path);
+  pthread_join(thread_2, NULL);
 
   endwin();
 }
 
 /**
- * @brief Executes the sleep function thread logic
+ * @brief Sleep function thread logic.
  *
+ * This function reads coordinates from a file and updates the display
+ * with a "sleep" effect by using `usleep` and measuring the time
+ * taken for each iteration. It also writes the time taken for each iteration
+ * to an output file.
+ *
+ * @param ptr The path to the file to read coordinates from.
+ * @return A pointer (not used in this function).
  */
 void *sleepFunction(void *ptr) {
   char *path = (char *)ptr;
@@ -66,11 +88,15 @@ void *sleepFunction(void *ptr) {
   double start_time_in_seconds;
   double end_time_in_seconds;
   double time_taken;
+  int i = 0;
   while (fscanf(file, "%d,%d\n", &x, &y) == 2) {
 
     pthread_mutex_lock(&screen_mutex); // Lock screen before updating
     clear();
+    mvprintw(0, 0, "Posix Timer Current Iteration: %d", i);
+    mvprintw(1, 0, "Time Taken: %lf", time_taken);
     mvprintw(y, x, "*");
+    i++;
     refresh();
     pthread_mutex_unlock(&screen_mutex); // Unlock screen after update
 
@@ -81,7 +107,7 @@ void *sleepFunction(void *ptr) {
     start_time_in_seconds = start.tv_sec + (start.tv_nsec / 1e9);
     end_time_in_seconds = end.tv_sec + (end.tv_nsec / 1e9);
     time_taken = end_time_in_seconds - start_time_in_seconds;
-    fprintf(output_file, "Sleep Function: %lf\n", time_taken);
+    fprintf(output_file, "%lf\n", time_taken);
   }
 
   // Close the file
@@ -90,8 +116,14 @@ void *sleepFunction(void *ptr) {
 }
 
 /**
- * @brief Executes the posix timer thread logic
+ * @brief Posix timer thread logic.
  *
+ * This function sets up a POSIX timer, waits for it to expire, and updates
+ * the display with the current iteration and time taken for each iteration.
+ * It also writes the time taken for each iteration to an output file.
+ *
+ * @param ptr The path to the file to read coordinates from.
+ * @return A pointer (not used in this function).
  */
 void *posixTimer(void *ptr) {
 
@@ -119,7 +151,7 @@ void *posixTimer(void *ptr) {
   its.it_interval.tv_sec = 0; // Single shot timer
   its.it_interval.tv_nsec = 0;
 
-  if (timer_create(CLOCK_REALTIME, &sev, &tmr) == -1) {
+  if (timer_create(CLOCK_MONOTONIC, &sev, &tmr) == -1) {
     perror("timer_create");
     return NULL;
   }
@@ -141,9 +173,8 @@ void *posixTimer(void *ptr) {
   double start_time_in_seconds;
   double end_time_in_seconds;
   double time_taken;
-
+  int i = 0;
   while (fscanf(file, "%d,%d\n", &x, &y) == 2) {
-
     clock_gettime(CLOCK_MONOTONIC, &start);
     // Start the timer
     if (timer_settime(tmr, 0, &its, NULL) == -1) {
@@ -166,11 +197,14 @@ void *posixTimer(void *ptr) {
 
     // Update display
     clear();
+    mvprintw(0, 0, "Posix Timer Current Iteration: %d", i);
+    mvprintw(1, 0, "Time Taken: %lf", time_taken);
     mvprintw(y, x, "*");
+    i++;
     refresh();
     pthread_mutex_unlock(&screen_mutex);
 
-    fprintf(output_file, "Posix Timer: %lf\n", time_taken);
+    fprintf(output_file, "%lf\n", time_taken);
   }
 
   fclose(output_file);

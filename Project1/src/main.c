@@ -18,7 +18,6 @@
  * @param argc The number of command-line arguments.
  * @param argv An array of command-line argument strings.
  *
- * @return Returns 0 if successful, otherwise returns a non-zero value.
  */
 int main(int argc, char *argv[]) {
   if (argc != 2) {

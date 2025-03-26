@@ -113,6 +113,7 @@ void *sleepFunction(void *ptr) {
   // Close the file
   fclose(output_file);
   fclose(file); // Close the file when done
+
   printf("End of Program\n");
 }
 

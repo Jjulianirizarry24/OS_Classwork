@@ -1,3 +1,0 @@
-/home/jj/Documents/Classwork/OS_Classwork/Proyect1/build/CMakeFiles/proyect1.dir
-/home/jj/Documents/Classwork/OS_Classwork/Proyect1/build/CMakeFiles/edit_cache.dir
-/home/jj/Documents/Classwork/OS_Classwork/Proyect1/build/CMakeFiles/rebuild_cache.dir

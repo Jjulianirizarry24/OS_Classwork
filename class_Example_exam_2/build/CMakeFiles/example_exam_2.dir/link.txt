@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/example_exam_2.dir/link.d CMakeFiles/example_exam_2.dir/src/main.c.o -o example_exam_2  -lm -lpthread

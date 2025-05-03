@@ -4,13 +4,34 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-// Function to decode a float value
+/**
+ * @brief Decodes a float value using a specific transformation.
+ *
+ * The transformation used is: decoded = -(original / 5.0)
+ *
+ * @param original_value The original float value to decode.
+ * @return The decoded float value.
+ */
 float decode(float original_value) { return -(original_value / 5.0f); }
 
+/**
+ * @brief Main function that handles input arguments, reads binary data, decodes
+ * it, and writes to CSV.
+ *
+ * Usage:
+ * @code
+ * ./program <binary_file> <rows> <columns>
+ * @endcode
+ *
+ * @param argc Argument count. Must be 4.
+ * @param argv Argument vector: binary file path, number of rows, and number of
+ * columns.
+ * @return int Exit status (0 for success, 1 for error).
+ */
 int main(int argc, char *argv[]) {
   if (argc != 4) {
     fprintf(stderr, "Usage: %s <binary_file> <rows> <columns>\n", argv[0]);
-    return EXIT_FAILURE;
+    exit(1);
   }
 
   const char *binary_file = argv[1];
@@ -20,7 +41,7 @@ int main(int argc, char *argv[]) {
   FILE *input = fopen(binary_file, "rb");
   if (!input) {
     perror("Error opening binary file");
-    return EXIT_FAILURE;
+    exit(1);
   }
 
   // Allocate memory for the image data
@@ -28,7 +49,7 @@ int main(int argc, char *argv[]) {
   if (!data) {
     fprintf(stderr, "Memory allocation failed.\n");
     fclose(input);
-    return EXIT_FAILURE;
+    exit(1);
   }
 
   // Read binary data
@@ -38,7 +59,7 @@ int main(int argc, char *argv[]) {
             read_count);
     free(data);
     fclose(input);
-    return EXIT_FAILURE;
+    exit(1);
   }
 
   fclose(input);
@@ -48,7 +69,7 @@ int main(int argc, char *argv[]) {
   if (!output) {
     perror("Error opening output.csv for writing");
     free(data);
-    return EXIT_FAILURE;
+    exit(1);
   }
 
   // Process and write the decoded data
@@ -63,10 +84,8 @@ int main(int argc, char *argv[]) {
     fprintf(output, "\n");
   }
 
-  printf("Decoded image written to output.csv\n");
+  printf("Finished program. Output csv was able to be created.\n");
 
   free(data);
   fclose(output);
-
-  return EXIT_SUCCESS;
 }

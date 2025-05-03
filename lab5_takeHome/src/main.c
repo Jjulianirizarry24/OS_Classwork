@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
   fclose(input);
 
   // Open CSV file for output
-  FILE *output = fopen("output.csv", "w");
+  FILE *output = fopen("../src/output.csv", "w");
   if (!output) {
     perror("Error opening output.csv for writing");
     free(data);

@@ -5,16 +5,6 @@
 #include <unistd.h>
 
 /**
- * @brief Decodes a float value using a specific transformation.
- *
- * The transformation used is: decoded = -(original / 5.0)
- *
- * @param original_value The original float value to decode.
- * @return The decoded float value.
- */
-float decode(float original_value) { return -(original_value / 5.0f); }
-
-/**
  * @brief Main function that handles input arguments, reads binary data, decodes
  * it, and writes to CSV.
  *
@@ -70,10 +60,10 @@ int main(int argc, char *argv[]) {
     exit(1);
   }
 
-  // Process and write the decoded data
+  // Write to output file using specified decode instructions
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
-      float decoded = decode(data[i * cols + j]);
+      float decoded = -(data[i * cols + j] / 5.0f);
       fprintf(output, "%.2f", decoded);
       if (j < cols - 1) {
         fprintf(output, ", ");
@@ -83,6 +73,5 @@ int main(int argc, char *argv[]) {
   }
 
   printf("Finished program. Output csv was able to be created.\n");
-
   fclose(output);
 }

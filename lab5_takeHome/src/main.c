@@ -57,7 +57,6 @@ int main(int argc, char *argv[]) {
   if (read_count != (size_t)(rows * cols)) {
     fprintf(stderr, "Error: Expected %d values, but read %zu\n", rows * cols,
             read_count);
-    free(data);
     fclose(input);
     exit(1);
   }
@@ -65,10 +64,9 @@ int main(int argc, char *argv[]) {
   fclose(input);
 
   // Open CSV file for output
-  FILE *output = fopen("../src/output.csv", "w");
+  FILE *output = fopen("output.csv", "w");
   if (!output) {
     perror("Error opening output.csv for writing");
-    free(data);
     exit(1);
   }
 
@@ -86,6 +84,5 @@ int main(int argc, char *argv[]) {
 
   printf("Finished program. Output csv was able to be created.\n");
 
-  free(data);
   fclose(output);
 }

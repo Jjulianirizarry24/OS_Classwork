@@ -57,10 +57,10 @@ RM = /snap/cmake/1461/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jj/Documents/Classwork/OS_Classwork/Lab5
+CMAKE_SOURCE_DIR = /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jj/Documents/Classwork/OS_Classwork/Lab5/build
+CMAKE_BINARY_DIR = /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jj/Documents/Classwork/OS_Classwork/Lab5/build/CMakeFiles /home/jj/Documents/Classwork/OS_Classwork/Lab5/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build/CMakeFiles /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jj/Documents/Classwork/OS_Classwork/Lab5/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,30 +129,6 @@ lab5/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab5.dir/build.make CMakeFiles/lab5.dir/build
 .PHONY : lab5/fast
 
-src/functions.o: src/functions.c.o
-.PHONY : src/functions.o
-
-# target to build an object file
-src/functions.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab5.dir/build.make CMakeFiles/lab5.dir/src/functions.c.o
-.PHONY : src/functions.c.o
-
-src/functions.i: src/functions.c.i
-.PHONY : src/functions.i
-
-# target to preprocess a source file
-src/functions.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab5.dir/build.make CMakeFiles/lab5.dir/src/functions.c.i
-.PHONY : src/functions.c.i
-
-src/functions.s: src/functions.c.s
-.PHONY : src/functions.s
-
-# target to generate assembly for a file
-src/functions.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lab5.dir/build.make CMakeFiles/lab5.dir/src/functions.c.s
-.PHONY : src/functions.c.s
-
 src/main.o: src/main.c.o
 .PHONY : src/main.o
 
@@ -186,9 +162,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... lab5"
-	@echo "... src/functions.o"
-	@echo "... src/functions.i"
-	@echo "... src/functions.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -1,5 +1,5 @@
 CMakeFiles/lab5.dir/src/main.c.o: \
- /home/jj/Documents/Classwork/OS_Classwork/Lab5/src/main.c \
+ /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/src/main.c \
  /usr/include/stdc-predef.h /usr/include/fcntl.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \

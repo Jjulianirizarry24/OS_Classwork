@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/jj/Documents/Classwork/OS_Classwork/Lab5/build"
+			"value" : "/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -559,7 +559,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/jj/Documents/Classwork/OS_Classwork/Lab5/build/CMakeFiles/pkgRedirects"
+			"value" : "/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -619,7 +619,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/jj/Documents/Classwork/OS_Classwork/Lab5"
+			"value" : "/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1183,7 +1183,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/jj/Documents/Classwork/OS_Classwork/Lab5/build"
+			"value" : "/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build"
 		},
 		{
 			"name" : "lab5_IS_TOP_LEVEL",
@@ -1207,7 +1207,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/jj/Documents/Classwork/OS_Classwork/Lab5"
+			"value" : "/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome"
 		}
 	],
 	"kind" : "cache",

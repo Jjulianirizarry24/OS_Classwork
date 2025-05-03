@@ -1,7 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/lab5.dir/link.d"
-  "CMakeFiles/lab5.dir/src/functions.c.o"
-  "CMakeFiles/lab5.dir/src/functions.c.o.d"
   "CMakeFiles/lab5.dir/src/main.c.o"
   "CMakeFiles/lab5.dir/src/main.c.o.d"
   "lab5"

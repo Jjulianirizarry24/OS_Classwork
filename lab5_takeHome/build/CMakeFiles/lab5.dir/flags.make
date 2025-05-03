@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/jj/Documents/Classwork/OS_Classwork/Lab5/include
+C_INCLUDES = -I/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/include
 
 C_FLAGS = 
 

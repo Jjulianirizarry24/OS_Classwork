@@ -8,8 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/jj/Documents/Classwork/OS_Classwork/Lab5/src/functions.c" "CMakeFiles/lab5.dir/src/functions.c.o" "gcc" "CMakeFiles/lab5.dir/src/functions.c.o.d"
-  "/home/jj/Documents/Classwork/OS_Classwork/Lab5/src/main.c" "CMakeFiles/lab5.dir/src/main.c.o" "gcc" "CMakeFiles/lab5.dir/src/main.c.o.d"
+  "/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/src/main.c" "CMakeFiles/lab5.dir/src/main.c.o" "gcc" "CMakeFiles/lab5.dir/src/main.c.o.d"
   "" "lab5" "gcc" "CMakeFiles/lab5.dir/link.d"
   )
 

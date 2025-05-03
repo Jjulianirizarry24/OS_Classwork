@@ -53,10 +53,10 @@ RM = /snap/cmake/1461/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jj/Documents/Classwork/OS_Classwork/Lab5
+CMAKE_SOURCE_DIR = /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jj/Documents/Classwork/OS_Classwork/Lab5/build
+CMAKE_BINARY_DIR = /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/lab5.dir/depend.make
@@ -72,48 +72,32 @@ include CMakeFiles/lab5.dir/flags.make
 CMakeFiles/lab5.dir/codegen:
 .PHONY : CMakeFiles/lab5.dir/codegen
 
-CMakeFiles/lab5.dir/src/functions.c.o: CMakeFiles/lab5.dir/flags.make
-CMakeFiles/lab5.dir/src/functions.c.o: /home/jj/Documents/Classwork/OS_Classwork/Lab5/src/functions.c
-CMakeFiles/lab5.dir/src/functions.c.o: CMakeFiles/lab5.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jj/Documents/Classwork/OS_Classwork/Lab5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/lab5.dir/src/functions.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/lab5.dir/src/functions.c.o -MF CMakeFiles/lab5.dir/src/functions.c.o.d -o CMakeFiles/lab5.dir/src/functions.c.o -c /home/jj/Documents/Classwork/OS_Classwork/Lab5/src/functions.c
-
-CMakeFiles/lab5.dir/src/functions.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/lab5.dir/src/functions.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jj/Documents/Classwork/OS_Classwork/Lab5/src/functions.c > CMakeFiles/lab5.dir/src/functions.c.i
-
-CMakeFiles/lab5.dir/src/functions.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/lab5.dir/src/functions.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jj/Documents/Classwork/OS_Classwork/Lab5/src/functions.c -o CMakeFiles/lab5.dir/src/functions.c.s
-
 CMakeFiles/lab5.dir/src/main.c.o: CMakeFiles/lab5.dir/flags.make
-CMakeFiles/lab5.dir/src/main.c.o: /home/jj/Documents/Classwork/OS_Classwork/Lab5/src/main.c
+CMakeFiles/lab5.dir/src/main.c.o: /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/src/main.c
 CMakeFiles/lab5.dir/src/main.c.o: CMakeFiles/lab5.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jj/Documents/Classwork/OS_Classwork/Lab5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/lab5.dir/src/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/lab5.dir/src/main.c.o -MF CMakeFiles/lab5.dir/src/main.c.o.d -o CMakeFiles/lab5.dir/src/main.c.o -c /home/jj/Documents/Classwork/OS_Classwork/Lab5/src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/lab5.dir/src/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/lab5.dir/src/main.c.o -MF CMakeFiles/lab5.dir/src/main.c.o.d -o CMakeFiles/lab5.dir/src/main.c.o -c /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/src/main.c
 
 CMakeFiles/lab5.dir/src/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/lab5.dir/src/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jj/Documents/Classwork/OS_Classwork/Lab5/src/main.c > CMakeFiles/lab5.dir/src/main.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/src/main.c > CMakeFiles/lab5.dir/src/main.c.i
 
 CMakeFiles/lab5.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/lab5.dir/src/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jj/Documents/Classwork/OS_Classwork/Lab5/src/main.c -o CMakeFiles/lab5.dir/src/main.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/src/main.c -o CMakeFiles/lab5.dir/src/main.c.s
 
 # Object files for target lab5
 lab5_OBJECTS = \
-"CMakeFiles/lab5.dir/src/functions.c.o" \
 "CMakeFiles/lab5.dir/src/main.c.o"
 
 # External object files for target lab5
 lab5_EXTERNAL_OBJECTS =
 
-lab5: CMakeFiles/lab5.dir/src/functions.c.o
 lab5: CMakeFiles/lab5.dir/src/main.c.o
 lab5: CMakeFiles/lab5.dir/build.make
 lab5: CMakeFiles/lab5.dir/compiler_depend.ts
 lab5: CMakeFiles/lab5.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jj/Documents/Classwork/OS_Classwork/Lab5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable lab5"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable lab5"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lab5.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -125,6 +109,6 @@ CMakeFiles/lab5.dir/clean:
 .PHONY : CMakeFiles/lab5.dir/clean
 
 CMakeFiles/lab5.dir/depend:
-	cd /home/jj/Documents/Classwork/OS_Classwork/Lab5/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jj/Documents/Classwork/OS_Classwork/Lab5 /home/jj/Documents/Classwork/OS_Classwork/Lab5 /home/jj/Documents/Classwork/OS_Classwork/Lab5/build /home/jj/Documents/Classwork/OS_Classwork/Lab5/build /home/jj/Documents/Classwork/OS_Classwork/Lab5/build/CMakeFiles/lab5.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build /home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build/CMakeFiles/lab5.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/lab5.dir/depend
 

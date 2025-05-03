@@ -2,7 +2,6 @@ lab5: \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o \
   /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o \
-  CMakeFiles/lab5.dir/src/functions.c.o \
   CMakeFiles/lab5.dir/src/main.c.o \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libm.so \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libm.so \
@@ -41,8 +40,6 @@ lab5: \
 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o:
-
-CMakeFiles/lab5.dir/src/functions.c.o:
 
 CMakeFiles/lab5.dir/src/main.c.o:
 

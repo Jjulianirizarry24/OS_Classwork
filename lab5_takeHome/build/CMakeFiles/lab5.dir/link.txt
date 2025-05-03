@@ -1,1 +1,1 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/lab5.dir/link.d CMakeFiles/lab5.dir/src/functions.c.o CMakeFiles/lab5.dir/src/main.c.o -o lab5  -lm -lncurses
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/lab5.dir/link.d CMakeFiles/lab5.dir/src/main.c.o -o lab5  -lm -lncurses

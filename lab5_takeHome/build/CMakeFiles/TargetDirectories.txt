@@ -1,3 +1,0 @@
-/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build/CMakeFiles/lab5.dir
-/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build/CMakeFiles/edit_cache.dir
-/home/jj/Documents/Classwork/OS_Classwork/lab5_takeHome/build/CMakeFiles/rebuild_cache.dir

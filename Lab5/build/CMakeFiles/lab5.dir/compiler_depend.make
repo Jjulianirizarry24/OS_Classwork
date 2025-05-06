@@ -30,6 +30,8 @@ CMakeFiles/lab5.dir/src/functions.c.o: /home/jj/Documents/Classwork/OS_Classwork
   /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/time.h \
   /usr/include/unctrl.h \
   /usr/include/unistd.h \
@@ -288,8 +290,6 @@ lab5: /lib/x86_64-linux-gnu/libc.so.6 \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_rusage.h:
@@ -344,6 +344,8 @@ lab5: /lib/x86_64-linux-gnu/libc.so.6 \
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/asm/bitsperlong.h:
@@ -362,11 +364,19 @@ lab5: /lib/x86_64-linux-gnu/libc.so.6 \
 
 /usr/include/unistd.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/string.h:
+
 /usr/lib/x86_64-linux-gnu/crtn.o:
 
 /usr/include/stdlib.h:
 
 /usr/include/wchar.h:
+
+/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
 /usr/include/unctrl.h:
 
@@ -390,6 +400,12 @@ CMakeFiles/lab5.dir/src/main.c.o:
 
 /usr/include/asm-generic/ioctl.h:
 
+/usr/lib/x86_64-linux-gnu/libc_nonshared.a:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/x86_64-linux-gnu/bits/ioctls.h:
+
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
@@ -398,9 +414,7 @@ CMakeFiles/lab5.dir/src/main.c.o:
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/x86_64-linux-gnu/asm/ioctls.h:
+/usr/include/strings.h:
 
 /usr/include/linux/types.h:
 
@@ -428,12 +442,6 @@ CMakeFiles/lab5.dir/src/functions.c.o:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
-/usr/include/x86_64-linux-gnu/asm/ioctl.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-least.h:
-
 /home/jj/Documents/Classwork/OS_Classwork/Lab5/src/functions.c:
 
 /usr/include/features-time64.h:
@@ -457,6 +465,14 @@ CMakeFiles/lab5.dir/src/functions.c.o:
 /usr/include/linux/stddef.h:
 
 /usr/include/linux/input-event-codes.h:
+
+/usr/include/x86_64-linux-gnu/asm/ioctl.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-least.h:
+
+/usr/include/x86_64-linux-gnu/asm/ioctls.h:
 
 /usr/include/x86_64-linux-gnu/asm/posix_types.h:
 
@@ -524,10 +540,6 @@ CMakeFiles/lab5.dir/src/functions.c.o:
 
 /usr/include/x86_64-linux-gnu/bits/ioctl-types.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
-
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
@@ -549,9 +561,3 @@ CMakeFiles/lab5.dir/src/functions.c.o:
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
-
-/usr/lib/x86_64-linux-gnu/libc_nonshared.a:
-
-/usr/include/x86_64-linux-gnu/bits/ioctls.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:

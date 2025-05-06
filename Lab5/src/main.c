@@ -6,7 +6,7 @@
 
 int main() {
   mainProcess();
-  // Replace with your keyboard's device file
+  // Replace with your keyboard's device
   // const char *device = "/dev/input/event15"; // event2
   // int fd = open(device, O_RDONLY);
   // if (fd == -1) {
@@ -39,4 +39,3 @@ int main() {
 
   // close(fd);
 }
-

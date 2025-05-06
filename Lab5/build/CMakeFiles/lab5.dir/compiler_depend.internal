@@ -31,6 +31,8 @@ CMakeFiles/lab5.dir/src/functions.c.o
  /usr/include/stdint.h
  /usr/include/stdio.h
  /usr/include/stdlib.h
+ /usr/include/string.h
+ /usr/include/strings.h
  /usr/include/time.h
  /usr/include/unctrl.h
  /usr/include/unistd.h

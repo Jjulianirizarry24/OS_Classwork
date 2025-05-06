@@ -17,14 +17,14 @@
 int mousex = 0, mousey = 0;
 int mid_row;
 int mid_col;
-volatile int timer = 3; // Made volatile for timer handler
+volatile int timer = 3;
 int goalX, goalY;
 int rows, cols;
 
 char *quadrant;
 char *mouse_location;
 
-// Mutexes for shared variables
+// Mutexes to prevent errors with ncurses screen
 pthread_mutex_t mouse_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t goal_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t display_mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -35,8 +35,13 @@ struct itimerspec timer_spec;
 
 void *input();
 
-// Timer handler function
-void timer_handler(int sig, siginfo_t *si, void *uc) {
+/**
+ * @brief Timer signal handler
+ * @param sig Signal number
+ * @param si Signal info structure
+ * @details Decrements the game timer each second
+ */
+void timer_handler(int sig, int *si) {
   pthread_mutex_lock(&display_mutex);
   timer--;
   pthread_mutex_unlock(&display_mutex);
@@ -80,7 +85,11 @@ void setup_timer() {
 }
 
 /**
- * @brief Main process function
+ * @brief Main game process
+ * @details Initializes game state, creates input thread, and runs main game
+ * loop
+ *
+ * Note:User Coordinates indicated with '>.<'
  */
 void mainProcess() {
   srand((unsigned int)time(NULL));
@@ -150,7 +159,7 @@ void mainProcess() {
     pthread_mutex_unlock(&display_mutex);
 
     pthread_mutex_lock(&goal_mutex);
-    mvprintw(goalY, goalX, "# Click Here #");
+    mvprintw(goalY, goalX, "# click #");
     pthread_mutex_unlock(&goal_mutex);
 
     // Display mouse info with mutex protection
@@ -158,7 +167,7 @@ void mainProcess() {
     mvprintw(1, 1, "Current Mouse X Val: %d", mousex);
     mvprintw(2, 1, "Current Mouse Y Val: %d", mousey);
 
-    // Determine quadrants
+    // Determine quadrants in ncurses screen
     if (goalY < mid_row && goalX < mid_col) {
       quadrant = "Q1 (Top-Left)";
     } else if (goalY < mid_row && goalX >= mid_col) {
@@ -185,11 +194,18 @@ void mainProcess() {
     pthread_mutex_unlock(&mouse_mutex);
 
     refresh();
-    usleep(10000); // Small delay to prevent CPU overuse
+    usleep(10000);
   }
 
   endwin();
 }
+
+/**
+ * @brief Input handling thread function
+ * @param arg Thread argument (unused)
+ * @return Always returns NULL
+ * @details Reads mouse input events and updates mouse position
+ */
 void *input() {
   const char *device = "/dev/input/event5";
   int fd = open(device, O_RDONLY);

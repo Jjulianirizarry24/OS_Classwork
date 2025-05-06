@@ -1,9 +1,11 @@
 #define _GNU_SOURCE
+#include <errno.h>
 #include <fcntl.h>
 #include <linux/input.h>
 #include <math.h>
 #include <ncurses.h>
 #include <pthread.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,7 +17,7 @@
 int mousex = 0, mousey = 0;
 int mid_row;
 int mid_col;
-int timer = 3;
+volatile int timer = 3; // Made volatile for timer handler
 int goalX, goalY;
 int rows, cols;
 
@@ -27,13 +29,64 @@ pthread_mutex_t mouse_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t goal_mutex = PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t display_mutex = PTHREAD_MUTEX_INITIALIZER;
 
+// Timer variables
+timer_t timerid;
+struct itimerspec timer_spec;
+
 void *input();
+
+// Timer handler function
+void timer_handler(int sig, siginfo_t *si, void *uc) {
+  pthread_mutex_lock(&display_mutex);
+  timer--;
+  pthread_mutex_unlock(&display_mutex);
+}
+
+/**
+ * @brief Setup POSIX timer
+ */
+void setup_timer() {
+  struct sigevent sev;
+  struct sigaction sa;
+
+  // Set up signal handler
+  sa.sa_flags = SA_SIGINFO;
+  sa.sa_sigaction = timer_handler;
+  sigemptyset(&sa.sa_mask);
+  if (sigaction(SIGRTMIN, &sa, NULL) == -1) {
+    perror("sigaction");
+    exit(EXIT_FAILURE);
+  }
+
+  // Create timer
+  sev.sigev_notify = SIGEV_SIGNAL;
+  sev.sigev_signo = SIGRTMIN;
+  sev.sigev_value.sival_ptr = &timerid;
+  if (timer_create(CLOCK_REALTIME, &sev, &timerid) == -1) {
+    perror("timer_create");
+    exit(EXIT_FAILURE);
+  }
+
+  // Arm timer (1 second interval)
+  timer_spec.it_value.tv_sec = 1;
+  timer_spec.it_value.tv_nsec = 0;
+  timer_spec.it_interval.tv_sec = 1;
+  timer_spec.it_interval.tv_nsec = 0;
+
+  if (timer_settime(timerid, 0, &timer_spec, NULL) == -1) {
+    perror("timer_settime");
+    exit(EXIT_FAILURE);
+  }
+}
 
 /**
  * @brief Main process function
  */
 void mainProcess() {
   srand((unsigned int)time(NULL));
+
+  // Setup POSIX timer
+  setup_timer();
 
   pthread_t input_thread;
   if (pthread_create(&input_thread, NULL, input, NULL) != 0) {
@@ -59,8 +112,6 @@ void mainProcess() {
   goalY = rand() % rows;
   pthread_mutex_unlock(&goal_mutex);
 
-  sleep(3);
-
   // Main loop
   while (1) {
     clear();
@@ -83,19 +134,20 @@ void mainProcess() {
 
     pthread_mutex_lock(&display_mutex);
     mvprintw(mid_row, mid_col - 5, " Time: %d ", timer);
-    pthread_mutex_unlock(&display_mutex);
 
-    if (timer == 0) {
-      pthread_mutex_lock(&display_mutex);
+    if (timer <= 0) {
       mvprintw(mid_row, mid_col - 5, " You lose! ");
       pthread_mutex_unlock(&display_mutex);
+      refresh();
+      sleep(1);
       clear();
       endwin();
+
+      // Clean up timer before exit
+      timer_delete(timerid);
       exit(0);
-    } else {
-      timer -= 1;
-      sleep(1);
     }
+    pthread_mutex_unlock(&display_mutex);
 
     pthread_mutex_lock(&goal_mutex);
     mvprintw(goalY, goalX, "# Click Here #");
@@ -133,12 +185,11 @@ void mainProcess() {
     pthread_mutex_unlock(&mouse_mutex);
 
     refresh();
-    usleep(10000);
+    usleep(10000); // Small delay to prevent CPU overuse
   }
 
   endwin();
 }
-
 void *input() {
   const char *device = "/dev/input/event5";
   int fd = open(device, O_RDONLY);
